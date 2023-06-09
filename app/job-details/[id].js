@@ -35,7 +35,11 @@ const JobDetails = () => {
   const displayTabsContent = () => {
     switch (activeTab) {
       case 'About':
-        return <JobAbout />;
+        return (
+          <JobAbout
+            info={data[0].job_description ?? 'No description provided'}
+          />
+        );
       case 'Qualifications':
         return (
           <Specifics
@@ -44,7 +48,12 @@ const JobDetails = () => {
           />
         );
       case 'Responsibilities':
-        return <JobFooter />;
+        return (
+          <Specifics
+            title="Responsibilities"
+            points={data[0].job_highlights?.Responsibilities ?? ['N/A']}
+          />
+        );
       default:
         return <JobAbout />;
     }
@@ -105,6 +114,12 @@ const JobDetails = () => {
             </View>
           )}
         </ScrollView>
+
+        <JobFooter
+          url={
+            data[0].job_google_link ?? 'https://careers.google.com/jobs/results'
+          }
+        />
       </>
     </SafeAreaView>
   );
