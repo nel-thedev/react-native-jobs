@@ -15,7 +15,7 @@ import { set } from 'react-native-reanimated';
 
 const jobTypes = ['Full Time', 'Part Time', 'Contractor', 'Internship'];
 
-const Welcome = () => {
+const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter();
   const [activeJobType, setActiveJobType] = useState('Full Time');
 
@@ -31,11 +31,13 @@ const Welcome = () => {
           <TextInput
             style={styles.searchInput}
             placeholder="What are you looking for?"
-            value=""
-            onChange={() => {}}
+            value={searchTerm}
+            onChangeText={(text) => {
+              setSearchTerm(text);
+            }}
           />
         </View>
-        <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
           <Image
             source={icons.search}
             style={styles.searchBtnImage}
